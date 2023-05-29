@@ -19,6 +19,15 @@ class Persona {//Clase padre
     set apellido(apellido){
         this._apellido = apellido;
     }
+    nombreCompleto(){
+        return this._nombre+' '+this._apellido;
+    }
+    //Sobreescribiendo el metodo de la clase padre object
+    toSring(){
+        //Se aplica el polimorfismo que significa : Varias formas en tiempo de ejecucion.
+        //El metodo que se ejecuta  depende si es una referencia  de tipo padre o hija.
+        return this.nombreCompleto();
+    }
 }
 
 class Empleado extends Persona {//Clase hija
@@ -34,6 +43,11 @@ class Empleado extends Persona {//Clase hija
     set departamento(departamento) {
         this._departamento = departamento;
     }
+//sobreescribir metodo.
+nombreCompleto(){
+    return super.nombreCompleto()+', '+this._departamento;
+}
+
 }
 
 
@@ -59,4 +73,9 @@ console.log(persona1.apellido);
 
 let Empleado1 = new Empleado('Maria','Jimenez','Sistemas');
 console.log(Empleado1)
-console.log(Empleado1.nombre)
+console.log(Empleado1.nombreCompleto());
+
+//Object.prototype.toString = esta es la manera dea cceder a los atributos de manera dinamica
+
+console.log(Empleado1.toSring());
+console.log(persona1.toSring());
